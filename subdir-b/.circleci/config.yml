@@ -7,7 +7,7 @@ jobs:
     docker:
       - image: debian:unstable-slim
     steps:
-      - run: echo Running tests for subdirectory B
+      - run: echo "Running tests for subdirectory B"
 
 workflows:
   B-main-workflow:
