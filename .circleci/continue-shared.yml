@@ -1,0 +1,17 @@
+
+version: 2.1
+
+# Resources defined in this config have a prefix `shared-` to avoid conflicts upon combine/merge
+# These commands can be referenced in any other config file
+
+commands:
+  shared-say-hello:
+    steps:
+      - run: echo "A command from the shared config!""
+
+jobs:
+  shared-job:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo "A job from the shared config!"
