@@ -31,11 +31,11 @@ workflows:
       - merge-main-config:
           requires:
             - shared-job
-      - config-splitting/run-all-modular-configs:
-          config-list-file: .circleci/modular-config-list-feature.txt
-          filters:
-            branches:
-              ignore: 
-                - main
-              only:
-                - /feature-.*/
+      # - config-splitting/run-all-modular-configs:
+      #     config-list-file: .circleci/modular-config-list-feature.txt
+      #     filters:
+      #       branches:
+      #         ignore: 
+      #           - main
+      #         only:
+      #           - /feature-.*/
