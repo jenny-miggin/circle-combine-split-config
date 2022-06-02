@@ -24,9 +24,6 @@ workflows:
       - shared-job
       - config-splitting/run-all-modular-configs:
           config-list-file: .circleci/modular-config-list-main.txt
-          filters:
-            branches:
-              only: main
           requires:
             - shared-job
 
@@ -41,5 +38,3 @@ workflows:
             branches:
               ignore: 
                 - main
-              only:
-                - /feature-.*/
