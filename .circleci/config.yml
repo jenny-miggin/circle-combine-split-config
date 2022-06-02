@@ -11,31 +11,35 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: echo "A job from the main config!"
-  merge-main-config:
-    executor: default
-    steps:
-    - when:
-        condition:
-          equal: [ main, << pipeline.git.branch >> ]
-        steps:
-          - config-splitting/run-all-modular-configs:
-              config-list-file: .circleci/modular-config-list-main.txt
-
+      
 
 workflows:
-  setup-config-files:
+  setup-main-config-files:
+    when:
+      and:
+        - equal: [ main, << pipeline.git.branch >> ]
     jobs:
       # Specify the file listing configs to be combined in `config-list-file`
       # This job combines those listed configs, then execute the resulting config.
       - shared-job
-      - merge-main-config:
+      - config-splitting/run-all-modular-configs:
+          config-list-file: .circleci/modular-config-list-main.txt
+          filters:
+            branches:
+              only: main
           requires:
             - shared-job
-      # - config-splitting/run-all-modular-configs:
-      #     config-list-file: .circleci/modular-config-list-feature.txt
-      #     filters:
-      #       branches:
-      #         ignore: 
-      #           - main
-      #         only:
-      #           - /feature-.*/
+
+  setup-feature-config-files:
+    jobs:
+      # Specify the file listing configs to be combined in `config-list-file`
+      # This job combines those listed configs, then execute the resulting config.
+      - shared-job
+      - config-splitting/run-all-modular-configs:
+          config-list-file: .circleci/modular-config-list-feature.txt
+          filters:
+            branches:
+              ignore: 
+                - main
+              only:
+                - /feature-.*/
