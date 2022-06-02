@@ -38,3 +38,5 @@ workflows:
             branches:
               ignore: 
                 - main
+          requires:
+            - shared-job
