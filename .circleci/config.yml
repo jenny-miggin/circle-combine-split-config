@@ -10,8 +10,16 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "A job from the main config!"
-      
+      - when:
+          condition:
+            equal: [ main, << pipeline.git.branch >> ]
+          steps:
+            - run: echo I'm on the main branch
+      - unless:
+          condition:
+            equal: [ main, << pipeline.git.branch >> ]
+          steps:
+            - run: echo I'm on the << pipeline.git.branch >> branch     
 
 workflows:
   setup-main-config-files:
