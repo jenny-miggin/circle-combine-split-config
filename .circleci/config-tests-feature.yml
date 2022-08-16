@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "some unit tests - success!"
+      - run: echo "some unit tests"
 
 workflows:
   feature-branch-tests:
