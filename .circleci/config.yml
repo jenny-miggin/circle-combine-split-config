@@ -20,15 +20,5 @@ workflows:
       - shared-job
       - config-splitting/run-all-modular-configs:
           config-list-file: .circleci/modular-config-list-main.txt
-          when:
-            - equal: [ main, << pipeline.git.branch >> ]
           requires:
             - shared-job
-      - config-splitting/run-all-modular-configs:
-          config-list-file: .circleci/modular-config-list-feature.txt
-          filters:
-            branches:
-              ignore: 
-                - main
-              only:
-                - /feature-.*/
