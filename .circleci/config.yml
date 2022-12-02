@@ -19,6 +19,20 @@ workflows:
       # This job combines those listed configs, then execute the resulting config.
       - shared-job
       - config-splitting/run-all-modular-configs:
+          filters:
+            branches:
+              only:
+                - main
           config-list-file: .circleci/modular-config-list-main.txt
           requires:
             - shared-job
+      - config-splitting/run-all-modular-configs:
+          filters:
+            branches:
+              ignore:
+                - main
+          config-list-file: .circleci/modular-config-list-feature.txt
+          requires:
+            - shared-job
+
+# VS Code Extension Version: 1.1.1
