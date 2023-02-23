@@ -21,6 +21,8 @@ workflows:
       - config-splitting/run-modular-configs-selectively:
           module-list-file: .circleci/subdir-list.txt
           base-revision: main # Compare against this branch
+          requires:
+            - shared-job
 
 
 # VS Code Extension Version: 1.1.1
