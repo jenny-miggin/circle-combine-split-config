@@ -1,2 +1,2 @@
 subdir-b/.circleci/config.yml
-.circleci/docker.yml
+.circleci/config-docker.yml
