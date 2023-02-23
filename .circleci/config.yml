@@ -3,7 +3,7 @@ version: 2.1
 setup: true
 
 orbs:
-  config-splitting: circle-makotom-orbs/config-splitting@0.0.1
+  config-splitting: circle-makotom-orbs/config-splitting@0.0.9
 
 jobs:
   shared-job:
@@ -18,21 +18,9 @@ workflows:
       # Specify the file listing configs to be combined in `config-list-file`
       # This job combines those listed configs, then execute the resulting config.
       - shared-job
-      - config-splitting/run-all-modular-configs:
-          filters:
-            branches:
-              only:
-                - main
-          config-list-file: .circleci/modular-config-list-main.txt
-          requires:
-            - shared-job
-      - config-splitting/run-all-modular-configs:
-          filters:
-            branches:
-              ignore:
-                - main
-          config-list-file: .circleci/modular-config-list-feature.txt
-          requires:
-            - shared-job
+      - config-splitting/run-modular-configs-selectively:
+          module-list-file: .circleci/subdir-list.txt
+          base-revision: main # Compare against the main branch to detect changes
+
 
 # VS Code Extension Version: 1.1.1

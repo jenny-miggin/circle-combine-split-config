@@ -1,4 +1,0 @@
-subdir-b/.circleci/config.yml
-.circleci/config-deploy.yml
-.circleci/config-tests-main.yml
-.circleci/config-docker.yml
