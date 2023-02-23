@@ -5,7 +5,7 @@ version: 2.1
 jobs:
   B-test:
     docker:
-      - image: debian:unstable-slim
+      - image: cimg/base:stable
     steps:
       - run: echo "Running tests for subdirectory B"
 

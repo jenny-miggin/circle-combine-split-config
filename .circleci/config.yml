@@ -20,7 +20,7 @@ workflows:
       - shared-job
       - config-splitting/run-modular-configs-selectively:
           module-list-file: .circleci/subdir-list.txt
-          base-revision: main # Compare against the main branch to detect changes
+          base-revision: dynamic-merge # Compare against this branch
 
 
 # VS Code Extension Version: 1.1.1
