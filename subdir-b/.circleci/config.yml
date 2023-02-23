@@ -7,7 +7,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "Running tests for subdirectory B"
+      - run: echo "Running tests again for subdirectory B"
 
 workflows:
   B-main-workflow:
